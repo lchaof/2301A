@@ -90,37 +90,37 @@ http.interceptors.response.use(
         case DEFAULTSTATUS.ERRORPRO:
           title = "错误请求"
           break // 停止循环
-        case 401:
+        case DEFAULTSTATUS.UNAUTHORIZED:
           title = "资源未授权"
           break
-        case 403:
+        case DEFAULTSTATUS.ACCESSFORBIDDEN:
           title = "禁止访问"
           break
-        case 404:
+        case DEFAULTSTATUS.RESOURCENOTFOUND:
           title = "未找到所请求的资源"
           break
-        case 405:
+        case DEFAULTSTATUS.METHODUNAVAILABLE:
           title = "不允许使用该方法"
           break
-        case 408:
+        case DEFAULTSTATUS.REQUESTTIMEOUT:
           title = "请求超时"
           break
-        case 500:
+        case DEFAULTSTATUS.SERVERERROR:
           title = "内部服务器错误"
           break
-        case 501:
+        case DEFAULTSTATUS.UNREALIZED:
           title = "未实现"
           break
-        case 502:
+        case DEFAULTSTATUS.GATEWAYERROR:
           title = "网关错误"
           break
-        case 503:
+        case DEFAULTSTATUS.SERVICEUNAVAILABLE:
           title = "服务不可用"
           break
-        case 504:
+        case DEFAULTSTATUS.GATEWAYTIMEOUT:
           title = "网关超时"
           break
-        case 505:
+        case DEFAULTSTATUS.HTTPVERSIONNONSUPPORT:
           title = "HTTP版本不受支持"
           break
         default:
