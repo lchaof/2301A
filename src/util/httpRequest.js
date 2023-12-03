@@ -22,20 +22,22 @@
  * 第七部: 导出
  */
 
-import axios from "axios"
-import { MessageBox, Loading } from "element-ui"
-import DEFAULTSTATUS from "./default"
+import axios from 'axios'
+import { MessageBox, Loading } from 'element-ui'
+import DEFAULTSTATUS from './default'
+import { getToken, removeToken } from './auth'
+import router from '@/router/index'
 /**放loading */
 let loadingInstance
 
 const http = axios.create({
   //  根路径
-  baseURL: "/",
+  baseURL: '/',
   // 超时时间
   timeout: 1000 * 30,
   // header,Content-type
   headers: {
-    "Content-Type": "application/json; charset=utf-8"
+    'Content-Type': 'application/json; charset=utf-8'
   },
   // 表示跨域请求时是否需要使用凭证
   withCredentials: true
@@ -46,11 +48,10 @@ const http = axios.create({
  */
 http.interceptors.request.use(
   (config) => {
-    /***
-     * TODO: 封装token,随后回来封装
-     */
+    /**将token封装到headers中 */
+    config.headers['Authorization'] = 'Bearer ' + getToken()
+    /**loading加载 */
     loadingInstance = Loading.service({ fullscreen: true })
-    // config.headers["X-Access-Token"] = getToken() // 请求头带上token
     return config
   },
   (error) => {
@@ -63,24 +64,25 @@ http.interceptors.request.use(
  */
 http.interceptors.response.use(
   (response) => {
+    /**关闭loading加载 */
     loadingInstance.close()
-    if (response.data && response.data.status === 2) {
+    console.log(response, 'response')
+    if (response.data && response.data.code === 10002) {
       // 401, token失效
-      /**
-       * TODO: 401用户登录
-       */
-      //  // resetLoginInfo()
-      //   router.push({
-      //     name: "login"
-      //   })
+      removeToken()
+      // 跳转到登录页面
+      router.push({
+        name: 'login'
+      })
     }
-    return response
+    return response.data
   },
   (error) => {
-    let title = ""
-    let message = ""
+    let title = ''
+    let message = ''
     loadingInstance.close()
     if (error && error.response) {
+      console.log(error)
       /**后端返回的报错的信息 */
       message = error.response.data.message
       // 401, token失效
@@ -88,62 +90,59 @@ http.interceptors.response.use(
         error.response.status // 跨域存在获取到的状态码的情况, status(随后端定义变化而变化,code)
       ) {
         case DEFAULTSTATUS.ERRORPRO:
-          title = "错误请求"
+          title = '错误请求'
           break // 停止循环
         case DEFAULTSTATUS.UNAUTHORIZED:
-          title = "资源未授权"
+          title = '资源未授权'
           break
         case DEFAULTSTATUS.ACCESSFORBIDDEN:
-          title = "禁止访问"
+          title = '禁止访问'
           break
-        case DEFAULTSTATUS.RESOURCENOTFOUND:
-          title = "未找到所请求的资源"
+        case DEFAULTSTATUS.NOTFOUND:
+          title = '未找到所请求的资源'
           break
-        case DEFAULTSTATUS.METHODUNAVAILABLE:
-          title = "不允许使用该方法"
+        case DEFAULTSTATUS.NOTALLOW:
+          title = '不允许使用该方法'
           break
-        case DEFAULTSTATUS.REQUESTTIMEOUT:
-          title = "请求超时"
+        case DEFAULTSTATUS.TIMEOUT:
+          title = '请求超时'
           break
-        case DEFAULTSTATUS.SERVERERROR:
-          title = "内部服务器错误"
+        case DEFAULTSTATUS.SERVERERROE:
+          title = '内部服务器错误'
           break
         case DEFAULTSTATUS.UNREALIZED:
-          title = "未实现"
+          title = '未实现'
           break
-        case DEFAULTSTATUS.GATEWAYERROR:
-          title = "网关错误"
+        case DEFAULTSTATUS.GATEWAY:
+          title = '网关错误'
           break
-        case DEFAULTSTATUS.SERVICEUNAVAILABLE:
-          title = "服务不可用"
+        case DEFAULTSTATUS.SERVICEUN:
+          title = '服务不可用'
           break
         case DEFAULTSTATUS.GATEWAYTIMEOUT:
-          title = "网关超时"
+          title = '网关超时'
           break
-        case DEFAULTSTATUS.HTTPVERSIONNONSUPPORT:
-          title = "HTTP版本不受支持"
+        case DEFAULTSTATUS.UNSUPPORT:
+          title = 'HTTP版本不受支持'
           break
         default:
           title = error.response.status
       }
       return MessageBox.alert(message, title, {
-        type: "warning"
+        type: 'warning'
       })
     } else {
       // 跨域获取不到状态码或者其他状态进行的处理
-      return MessageBox.alert("请联系系统管理员, 或稍后再试!", "未知错误", {
-        type: "error"
+      return MessageBox.alert('请联系系统管理员, 或稍后再试!', '未知错误', {
+        type: 'error'
       })
     }
   }
 )
 
 /**封装动态代理标识
- * process.env.VUE_APP_IDENT
- *url : /login
  */
-http.addURL = function (url) {
-  console.log(url)
+http.addurl = function (url) {
   console.log(process.env.VUE_APP_IDENT + url)
   return process.env.VUE_APP_IDENT + url
 }
