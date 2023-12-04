@@ -9,13 +9,22 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    redirect: '/about',
+    children: [
+      {
+        path: '/about',
+        name: 'about',
+        component: () => import('../views/AboutView.vue')
+      },
+      {
+        path: '/framework',
+        name: 'framework',
+        component: () => import('../views/framework/index.vue')
+      }
+    ]
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
+
   {
     path: '/login',
     name: 'login',

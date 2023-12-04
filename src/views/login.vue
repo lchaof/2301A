@@ -24,6 +24,7 @@
 
 <script>
 import { querylogin } from '../util/aip'
+import { setToken } from '../util/auth'
 export default {
 	data () {
 		return {
@@ -36,11 +37,14 @@ export default {
 	methods: {
 		onSubmit () {
 			querylogin(this.form).then(res => {
+
 				this.$message({
 					message: res.message,
 					type: 'success'
 				});
+				setToken(res.data)
 				this.$router.push('/')
+
 			})
 		}
 	},
