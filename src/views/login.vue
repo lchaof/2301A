@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { querylogin } from '../util/aip'
-import { setToken } from '../util/auth'
+import { querylogin } from '../utils/aip'
+import { setToken } from '../utils/auth'
 export default {
 	data () {
 		return {
@@ -38,12 +38,18 @@ export default {
 		onSubmit () {
 			querylogin(this.form).then(res => {
 
-				this.$message({
-					message: res.message,
-					type: 'success'
-				});
-				setToken(res.data)
-				this.$router.push('/')
+				if (res.success) {
+					this.$message({
+						message: res.message,
+						type: 'success'
+					});
+					setToken(res.data)
+					this.$router.push('/')
+				} else {
+					this.$message.error(res.message);
+				}
+
+
 
 			})
 		}

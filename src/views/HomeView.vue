@@ -82,8 +82,8 @@
 </template>
 
 <script>
-import { queryprofile } from '../util/aip'
-import { removeToken } from '../util/auth'
+import { queryprofile } from '../utils/aip'
+import { removeToken } from '../utils/auth'
 export default {
 	data () {
 		return {
@@ -114,7 +114,7 @@ export default {
 	watch: {},
 	created () {
 		queryprofile().then(res => {
-			console.log(res);
+			// console.log(res);
 		})
 	}
 };

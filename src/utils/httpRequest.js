@@ -66,7 +66,7 @@ http.interceptors.response.use(
   (response) => {
     /**关闭loading加载 */
     loadingInstance.close()
-    console.log(response, 'response')
+    // console.log(response, 'response')
     if (response.data && response.data.code === 10002) {
       // 401, token失效
       removeToken()
@@ -143,7 +143,7 @@ http.interceptors.response.use(
 /**封装动态代理标识
  */
 http.addurl = function (url) {
-  console.log(process.env.VUE_APP_IDENT + url)
+  // console.log(process.env.VUE_APP_IDENT + url)
   return process.env.VUE_APP_IDENT + url
 }
 

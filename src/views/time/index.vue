@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="width: 700px; margin-top: 10px;">
 		<el-row type="flex" justify="end">
 			<el-select v-model="currentYear" size="small" style="width: 120px" @change="dateChange">
 				<el-option v-for="item in yearList" :key="item" :label="item" :value="item">{{ item }}</el-option>
