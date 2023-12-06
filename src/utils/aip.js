@@ -20,3 +20,13 @@ export const bjframework=(id)=>requery.get(requery.addurl(`/company/department/$
 export const querybjframework=(data)=>requery.put(requery.addurl(`/company/department/${data.id}`),data)
 // 根据ID删除部门  DELETE
 export const queryDelframework =(id)=>requery.delete(requery.addurl(`/company/department/${id}`))
+
+// 查询申请列表
+export const queryApprovals = (data)=>requery.put(requery.addurl(`/user/process/instance/${data.page}/${data.size}`))
+// 获取所有权限点
+export const queryPermission = ()=>requery.get(requery.addurl('/sys/permission'))
+// 获取员工列表
+export const queryUser = ()=>requery.get(requery.addurl('/sys/user'))
+// 获取员工基本信息
+export const queryUserId = (id)=>requery.get(requery.addurl(`/sys/user/${id}`))
+

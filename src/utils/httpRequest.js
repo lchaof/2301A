@@ -51,7 +51,10 @@ http.interceptors.request.use(
     /**将token封装到headers中 */
     config.headers['Authorization'] = 'Bearer ' + getToken()
     /**loading加载 */
-    loadingInstance = Loading.service({ fullscreen: true })
+    loadingInstance = Loading.service({
+      fullscreen: true,
+      text: '加载中...'
+    })
     return config
   },
   (error) => {

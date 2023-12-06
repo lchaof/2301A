@@ -21,6 +21,31 @@ const routes = [
         path: '/framework',
         name: 'framework',
         component: () => import('../views/framework/index.vue')
+      },
+      {
+        path: '/approvals',
+        name: 'approvals',
+        component: () => import('../views/approvals/index.vue')
+      },
+      {
+        path: '/securitySetting',
+        name: 'securitySetting',
+        component: () => import('../views/approvals/securitySetting/index.vue')
+      },
+      {
+        path: '/permission',
+        name: 'permission',
+        component: () => import('../views/permission/index.vue')
+      },
+      {
+        path: '/employees',
+        name: 'employees',
+        component: () => import('../views/employees/index.vue')
+      },
+      {
+        path: '/detail',
+        name: 'detail',
+        component: () => import('../views/employees/detail/index.vue')
       }
     ]
   },
