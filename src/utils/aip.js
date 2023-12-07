@@ -29,4 +29,6 @@ export const queryPermission = ()=>requery.get(requery.addurl('/sys/permission')
 export const queryUser = ()=>requery.get(requery.addurl('/sys/user'))
 // 获取员工基本信息
 export const queryUserId = (id)=>requery.get(requery.addurl(`/sys/user/${id}`))
+// 给员工分配角色
+export const queryAllotUser = (data)=>requery.get(requery.addurl('/sys/user/assignRoles'),data)
 

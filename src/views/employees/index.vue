@@ -49,18 +49,38 @@
 						<el-button type="text">转正</el-button>
 						<el-button type="text">调岗</el-button>
 						<el-button type="text">离职</el-button>
-						<el-button type="text">角色</el-button>
+						<el-button type="text" @click="handleLookUse(scope.row.id)">角色</el-button>
 						<el-button type="text" disabled>删除</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
-
+			<div class="Pagination">
+				<el-pagination small layout="prev, pager, next" :total="total" @current-change="handleCurrentChange">
+				</el-pagination>
+			</div>
 		</div>
+		<!-- 对话框 -->
+		<el-dialog title="分配角色" :visible.sync="dialogVisible" width="30%">
+
+			<el-checkbox-group v-model="info2.checkList">
+				<el-checkbox label="A">系统管理员</el-checkbox>
+				<el-checkbox label="604e2b03488be61b90b68777">人事经理</el-checkbox>
+				<el-checkbox label="604e2b19488be61b90b6877a">人事专员</el-checkbox>
+				<el-checkbox label="604e2b12488be61b90b68779">薪资专员</el-checkbox>
+				<el-checkbox label="604e2b25488be61b90b6877b">员工</el-checkbox>
+
+			</el-checkbox-group>
+
+			<span slot="footer" class="dialog-footer">
+				<el-button type="primary" @click="handleAddAllot">确 定</el-button>
+				<el-button @click="dialogVisible = false">取 消</el-button>
+			</span>
+		</el-dialog>
 	</div>
 </template>
 
 <script>
-import { queryUser } from '../../utils/aip'
+import { queryUser, queryUserId, queryAllotUser } from '../../utils/aip'
 export default {
 	data () {
 		return {
@@ -69,17 +89,26 @@ export default {
 				size: 10
 			},
 			total: 0,
-			data: []
+			data: [],
+			dialogVisible: false,
+			info2: {
+				id: '',
+				checkList: []
+			},
+
 		};
 	},
 	methods: {
+		// 获取数据
 		getUser () {
+			// this.data = []
 			queryUser(this.info).then(res => {
 				console.log(res);
 				this.total = res.data.total
 				this.data = res.data.rows
 			})
 		},
+		// 跳转详情
 		handleLook (id) {
 			console.log(id);
 			this.$router.push({
@@ -88,6 +117,30 @@ export default {
 					id: id
 				}
 			})
+		},
+		// 分页
+		handleCurrentChange (val) {
+			console.log(`当前页: ${val}`);
+			this.info.page = val
+
+			this.getUser()
+		},
+		// 对话框
+
+		handleLookUse (id) {
+
+			queryUserId(id).then(res => {
+				this.dialogVisible = true
+				this.info2.id = id
+				this.info2.checkList = res.data.roleIds
+			})
+
+		},
+		handleAddAllot () {
+			this.dialogVisible = false
+			// queryAllotUser(this.info2).then(res=>{
+			// 	console.log(res);
+			// })
 		}
 	},
 	computed: {},

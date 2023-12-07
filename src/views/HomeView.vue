@@ -53,14 +53,15 @@
 				<el-header>
 					<div class="headerleft">
 						<p class="iconbtn">
-							<svg-icon :icon-class="isCollapse == true ? 'zhedie-zhankai' : 'zhedie-shouqi'"
-								@click="isCollapse = !isCollapse" />
-							<!-- <i :class="isCollapse == true ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
-							@click="isCollapse = !isCollapse"></i> -->
+							<!-- <svg-icon :icon-class="isCollapse == true ? 'zhedie-zhankai' : 'zhedie-shouqi'"
+								@click="isCollapse = !isCollapse" /> -->
+							<i :class="isCollapse == true ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
+								@click="isCollapse = !isCollapse"></i>
 						</p>
 						<p class="icontxt">江苏传智播客教育科技股份有限公司<span class="breadBtn">体验版</span></p>
 					</div>
 					<div class="headerright">
+
 						<p><img style="width: 30px; margin-right: 10px;" src="../assets/toptxtbtn.png" alt=""></p>
 						<el-avatar>
 							<img src="../assets/renimg.jpg" alt="">
@@ -90,7 +91,9 @@
 <script>
 import { queryprofile } from '../utils/aip'
 import { removeToken } from '../utils/auth'
+
 export default {
+
 	data () {
 		return {
 			isCollapse: false

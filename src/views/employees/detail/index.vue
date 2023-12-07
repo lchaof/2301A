@@ -49,7 +49,7 @@
 									<el-form-item label="入职时间">
 										<el-date-picker v-model="twoform.timeOfEntry" type="date" placeholder="选择日期">
 										</el-date-picker>
-										</el-date-picker>
+
 									</el-form-item>
 									<el-form-item label="部门">
 										<el-input v-model="twoform.departmentName"></el-input>
@@ -151,8 +151,208 @@
 							</el-form>
 						</div>
 					</div>
+					<div class="message">
+						<p>通讯信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+								<el-form-item label="QQ">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="微信">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="现住定制">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="通讯地址">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="联系手机">
+									<el-input placeholder="11位字符"></el-input>
+								</el-form-item>
+								<el-form-item label="个人邮箱">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="紧急联系人">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="紧急联系电话">
+									<el-input placeholder="11位字符"></el-input>
+								</el-form-item>
+							</el-form>
+						</div>
+					</div>
+					<div class="message">
+						<p>账号信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+								<el-form-item label="社保电脑号">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="公积金账号">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="银行卡号">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="开户行">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+
+							</el-form>
+						</div>
+					</div>
+					<div class="message">
+						<p>教育信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+								<el-form-item label="学历类型">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="毕业学校">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="入学时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+								<el-form-item label="毕业时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+								<el-form-item label="专业">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+
+							</el-form>
+						</div>
+					</div>
+					<div class="message">
+						<p>从业信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+
+								<el-form-item label="上家公司">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="职称">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="有无竞业限制">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+								<el-form-item label="备注">
+									<el-input type="textarea"></el-input>
+								</el-form-item>
+								<el-form-item>
+									<el-button type="primary">保存更新</el-button>
+									<el-button>返回</el-button>
+								</el-form-item>
+							</el-form>
+						</div>
+					</div>
 				</el-tab-pane>
-				<el-tab-pane label="岗位信息" name="three">角色管理</el-tab-pane>
+				<el-tab-pane label="岗位信息" name="three">
+					<div class="message">
+						<p>基础信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+								<el-form-item label="岗位">
+									<el-input placeholder="请输入">124</el-input>
+								</el-form-item>
+								<el-form-item label="转正状态">
+									<el-select placeholder="请选择" :disabled="true">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="职级">
+									<el-input placeholder=""></el-input>
+								</el-form-item>
+								<el-form-item label="转正评价">
+									<el-input type="textarea" placeholder="1-300位字符"></el-input>
+								</el-form-item>
+								<el-form-item label="汇报对象">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="HRBP">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="调成司龄(天)">
+									<el-input placeholder=""></el-input>
+								</el-form-item>
+								<el-form-item label="首次参加工作时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+
+								<el-form-item label="调整工龄">
+									<el-input placeholder="0.00年" :disabled="true"></el-input>
+								</el-form-item>
+
+							</el-form>
+						</div>
+					</div>
+					<div class="message">
+						<p>合同信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+								<el-form-item label="首次合同开始时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+								<el-form-item label="首次合同结束时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+								<el-form-item label="现合同开始时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+								<el-form-item label="现合同结束时间">
+									<el-date-picker type="date" placeholder="选择日期">
+									</el-date-picker>
+								</el-form-item>
+								<el-form-item label="合同期限">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="续签次数">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+							</el-form>
+						</div>
+					</div>
+					<div class="message">
+						<p>招聘信息</p>
+						<div class="messageform">
+							<el-form ref="form" :model="form" label-width="130px">
+
+								<el-form-item label="其他招聘渠道">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="招聘渠道">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="社招/校招">
+									<el-select placeholder="请选择">
+									</el-select>
+								</el-form-item>
+								<el-form-item label="推荐企业/人">
+									<el-input placeholder="请输入"></el-input>
+								</el-form-item>
+							</el-form>
+							<el-form-item>
+									<el-button type="primary">保存更新</el-button>
+									<el-button>返回</el-button>
+								</el-form-item>
+						</div>
+					</div>
+				</el-tab-pane>
 			</el-tabs>
 
 		</div>
@@ -164,7 +364,7 @@ import { queryUserId } from '../../../utils/aip'
 export default {
 	data () {
 		return {
-			activeName: 'two',
+			activeName: 'one',
 			// 登录账号设置表单
 			oneruleForm: {
 				name: '',
