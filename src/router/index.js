@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import { getToken } from '../utils/auth'
+import layou from '../layout/index'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
+    name: '',
+    component: layou,
     redirect: '/about',
     children: [
       {
@@ -43,9 +43,15 @@ const routes = [
         component: () => import('../views/employees/index.vue')
       },
       {
+
         path: '/detail',
         name: 'detail',
         component: () => import('../views/employees/detail/index.vue')
+      },
+      {
+        path: '/company',
+        name: 'company',
+        component: () => import('../views/company/index.vue')
       }
     ]
   },

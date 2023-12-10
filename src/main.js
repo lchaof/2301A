@@ -9,6 +9,7 @@ import '@/icons'
 import VueI18n from "vue-i18n"
 import ElementLocale from "element-ui/lib/locale"
 import i18n from "./language/index"
+// import '../src/styles/element-variables.scss'
 ElementLocale.i18n((key, value) => i18n.t(key, value))
 Vue.prototype.$http = http
 Vue.use(ElementUI)

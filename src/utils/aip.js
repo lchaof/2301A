@@ -31,4 +31,12 @@ export const queryUser = ()=>requery.get(requery.addurl('/sys/user'))
 export const queryUserId = (id)=>requery.get(requery.addurl(`/sys/user/${id}`))
 // 给员工分配角色
 export const queryAllotUser = (data)=>requery.get(requery.addurl('/sys/user/assignRoles'),data)
+// 获取所有角色列表
+export const queryUserlist=(data)=>requery.get(requery.addurl('/sys/role'),data)
+// 添加角色
+export const queryAddRole = (data) => requery.post(requery.addurl('/sys/role'),data)
+// 据ID删除角色
+export const queryDelRole = (id) => requery.delete(requery.addurl(`/sys/role/${id}`))
+// 根据ID获取角色详情
+export const queryGetRole = (id) =>requery.get(requery.addurl(`/sys/role/${id}`))
 

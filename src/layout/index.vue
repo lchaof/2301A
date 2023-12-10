@@ -3,60 +3,17 @@
 		<el-container>
 			<!-- 左侧导航菜单 -->
 			<el-aside :width="isCollapse == true ? '50px' : '200px'" style="transition: 0.5s;">
-				<p class="imglogo"><img src="../assets/ihrmlogo.png"
-						:style="isCollapse == true ? { width: '50px' } : { width: '70%' }" alt=""></p>
-
-				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" background-color="#4575fa" text-color="#fff"
-					active-text-color="#fff" :collapse="isCollapse" router>
-
-					<el-menu-item index="/about">
-						<i class="el-icon-brush"></i>
-						<span slot="title">首页</span>
-					</el-menu-item>
-					<el-menu-item index="/employees">
-						<i class="el-icon-s-custom"></i>
-						<span slot="title">员工</span>
-					</el-menu-item>
-					<el-menu-item index="1">
-						<i class="el-icon-setting"></i>
-						<span slot="title">公司设置</span>
-					</el-menu-item>
-					<el-menu-item index="/permission">
-						<i class="el-icon-goods"></i>
-						<span slot="title">权限管理</span>
-					</el-menu-item>
-					<el-menu-item index="1">
-						<i class="el-icon-s-grid"></i>
-						<span slot="title">社保</span>
-					</el-menu-item>
-					<el-menu-item index="/approvals">
-						<i class="el-icon-s-order"></i>
-						<span slot="title">审批</span>
-					</el-menu-item>
-					<el-menu-item index="1">
-						<i class="el-icon-s-release"></i>
-						<span slot="title">考勤</span>
-					</el-menu-item>
-					<el-menu-item index="1">
-						<i class="el-icon-food"></i>
-						<span slot="title">工资</span>
-					</el-menu-item>
-					<el-menu-item index="/framework">
-						<i class="el-icon-share"></i>
-						<span slot="title">组织架构</span>
-					</el-menu-item>
-
-				</el-menu>
+				<leftMenu ref="leftMenu" />
 			</el-aside>
 			<el-container>
+				
 				<!-- 右侧上部分 -->
 				<el-header>
 					<div class="headerleft">
 						<p class="iconbtn">
 							<!-- <svg-icon :icon-class="isCollapse == true ? 'zhedie-zhankai' : 'zhedie-shouqi'"
 								@click="isCollapse = !isCollapse" /> -->
-							<i :class="isCollapse == true ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
-								@click="isCollapse = !isCollapse"></i>
+							<i :class="isCollapse == true ? 'el-icon-s-unfold' : 'el-icon-s-fold'" @click="handleisCollapse"></i>
 						</p>
 						<p class="icontxt">江苏传智播客教育科技股份有限公司<span class="breadBtn">体验版</span></p>
 					</div>
@@ -91,9 +48,10 @@
 <script>
 import { queryprofile } from '../utils/aip'
 import { removeToken } from '../utils/auth'
+import leftMenu from '../views/leftMenu/index.vue'
 
 export default {
-
+	components: { leftMenu },
 	data () {
 		return {
 			isCollapse: false
@@ -116,6 +74,11 @@ export default {
 					this.$router.go(0)
 				}, 1000)
 			}
+		},
+		handleisCollapse () {
+			this.isCollapse = !this.isCollapse
+			console.log(this.$refs.leftMenu);
+			this.$refs.leftMenu.isCollapse = this.isCollapse
 		}
 	},
 	computed: {},
@@ -148,12 +111,8 @@ i {
 .el-aside {
 	background-color: #5a8cff;
 	height: 100vh;
-	// background-image: url(../assets/leftnavBg.png);
-	// background-repeat: no-repeat;
-	// background-size: 100% 80px;
 	background: url("../assets/leftnavBg.png") no-repeat 0 100%,
 		-webkit-linear-gradient(bottom, #3d6df8, #5b8cff);
-
 }
 
 .el-main {
@@ -173,15 +132,7 @@ i {
 	display: flex;
 }
 
-.imglogo {
-	text-align: center;
-	margin-bottom: 10px;
-	height: 5%;
 
-	img {
-		height: 100%;
-	}
-}
 
 .iconbtn {
 	color: #fff;
